@@ -140,3 +140,23 @@ CALL cambiar_estado_estudiante(
     '20260001',
     'ACTIVO'
 );
+
+
+CREATE OR REPLACE PROCEDURE cambiar_docente_grupo(
+    p_id_grupo INT,
+    p_id_docente INT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE grupos
+    SET id_docente = p_id_docente
+    WHERE id_grupo = p_id_grupo;
+END;
+$$;
+
+CALL cambiar_docente_grupo(1, 2);
+
+SELECT id_grupo, id_docente
+FROM grupos
+WHERE id_grupo = 1;
